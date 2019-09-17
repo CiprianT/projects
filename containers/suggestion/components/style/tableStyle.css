@@ -1,0 +1,32 @@
+.centered-table{
+    margin-left:134px; 
+    margin-right:auto;
+    animation: fadeInUp 0.7s ease-in-out 0s forwards;
+}
+@keyframes fadeInUp {
+    from { 
+    opacity: 0;
+    -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
+    }
+    
+    to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+    }
+}
+.table-props{
+    margin-top: 30px;
+}
+.create {
+    background: #f9fbfb;
+    border: 1px solid #D0D0D0;
+    border-radius: 6px;
+    height: 250px;
+    margin: 20px auto 0;
+    width: 370px;
+  }
+  .create:hover{
+      background: #F5F5F5;
+  }

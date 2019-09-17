@@ -1,0 +1,134 @@
+.notification {
+    display: inline-flex;
+    position: absolute;
+    margin-left: 1145px;
+    font-size: 25px;
+    margin-top: -1px;
+}
+
+.notification:hover{
+    text-decoration: none;
+    animation: swing;
+    color:white;
+    cursor: pointer;
+    -webkit-transform-origin: 50% 0;
+    transform-origin: 50% 0;
+    -webkit-animation: swinging 0.5s linear forwards 1.5;
+    animation: swinging 0.5s linear forwards 1.5;
+}
+.notification::before, 
+.notification::after {
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.notification::before {
+    display: block;
+    transform-origin: top center;
+}
+
+.notification::after {
+    font-family: Arial;
+    font-size: 13px;
+    font-weight: 700;
+    position: absolute;
+    top: -7px;
+    right: -13px;
+    padding: 0px 5px;
+    line-height: 100%;
+    border: 2px #fff solid;
+    border-radius: 60px;
+    background: #3498db;
+    opacity: 0;
+    content: attr(data-count);
+    opacity: attr(data-count);
+    transform: scale(0.5);
+    transition: transform, opacity;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-out;
+}
+
+.notification.notify::before {
+    animation: ring 1.5s ease;
+}
+
+.notification.show-count::after {
+    transform: scale(1);
+    opacity: 1;
+}
+
+@keyframes ring {
+    0% {
+        transform: rotate(35deg);
+    }
+    12.5% {
+        transform: rotate(-30deg);
+    }
+    25% {
+        transform: rotate(25deg);
+    }
+    37.5% {
+        transform: rotate(-20deg);
+    }
+    50% {
+        transform: rotate(15deg);
+    }
+    62.5% {
+        transform: rotate(-10deg);
+    }
+    75% {
+        transform: rotate(5deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+.notificationCount {
+    display: inline-flex;
+    position: absolute;
+    margin-left: 1145px;
+    font-size: 25px;
+    margin-top: -1px;
+}
+
+.notificationCount::before, 
+.notificationCount::after {
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.notificationCount::before {
+    display: block;
+    transform-origin: top center;
+}
+
+.notificationCount::after {
+    font-family: Arial;
+    font-size: 13px;
+    font-weight: 700;
+    position: absolute;
+    top: -5px;
+    right: 10px;
+    padding: 0px 5px;
+    line-height: 100%;
+    border: 2px #fff solid;
+    border-radius: 60px;
+    background: #3498db;
+    opacity: 0;
+    content: attr(data-count);
+    opacity: attr(data-count);
+    transform: scale(0.5);
+    transition: transform, opacity;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-out;
+}
+
+.notificationCount.notify::before {
+    animation: ring 1.5s ease;
+}
+
+.notificationCount.show-count::after {
+    transform: scale(1);
+    opacity: 1;
+}

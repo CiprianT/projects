@@ -1,0 +1,136 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="1" author="cteisanu">
+        <createTable tableName="tresholds">
+            <column name="treshold_id" type="number(38)"/>
+            <column name="name" type="varchar(500)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="description" type="varchar(900)"/>
+            <column name="value" type="number(38)"/>
+        </createTable>
+        <addPrimaryKey tableName="tresholds" columnNames="treshold_id"/>
+        <createSequence sequenceName="seq_treshold"  minValue="1" maxValue="999999" incrementBy="1" startValue="1"/>
+    </changeSet>
+
+    <changeSet id="2" author="cteisanu">
+        <createTable tableName="tag">
+            <column name="tag_id" type="number(38)"/>
+            <column name="name" type="varchar(500)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+        <addPrimaryKey tableName="tag" columnNames="tag_id"/>
+        <createSequence sequenceName="seq_tag" minValue="1" maxValue="999999" incrementBy="1" startValue="1"/>
+    </changeSet>
+
+    <changeSet id="3" author="cteisanu">
+        <createTable tableName="suggestion">
+            <column name="suggestion_id" type="number(38)"/>
+            <column name="title" type="varchar(500)"/>
+            <column name="post_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="text" type="varchar(2000)"/>
+            <column name="author" type="number(38)"/>
+            <column name="anonymous" type="boolean"/>
+            <column name="status" type="number(10)"/>
+        </createTable>
+        <addPrimaryKey tableName="suggestion" columnNames="suggestion_id"/>
+        <addForeignKeyConstraint baseTableName="suggestion" baseColumnNames="author"
+                                 constraintName="FK_suggestion_users"
+                                 referencedTableName="users"
+                                 referencedColumnNames="user_id"/>
+        <createSequence sequenceName="seq_suggestion" minValue="1" maxValue="999999" incrementBy="1" startValue="1"/>
+    </changeSet>
+
+    <changeSet id="4" author="cteisanu">
+        <createTable tableName="vote">
+            <column name="fk_user_id" type="number(38)"/>
+            <column name="fk_suggestion_id" type="number(38)"/>
+            <column name="preference" type="number(38)"/>
+        </createTable>
+        <addPrimaryKey columnNames="fk_user_id, fk_suggestion_id"
+                       constraintName="PK_vote"
+                       schemaName="public"
+                       tableName="vote"/>
+        <addForeignKeyConstraint baseTableName="vote" baseColumnNames="fk_user_id" constraintName="FK_vote_users"
+                                 referencedTableName="users"
+                                 referencedColumnNames="user_id"/>
+        <addForeignKeyConstraint baseTableName="vote" baseColumnNames="fk_suggestion_id" constraintName="FK_vote_suggetion"
+                                 referencedTableName="suggestion"
+                                 referencedColumnNames="suggestion_id"/>
+    </changeSet>
+    <changeSet id="5" author="Marius">
+        <createTable tableName="suggestion_tag">
+            <column name="fk_tag_id" type="number(38)"/>
+            <column name="fk_suggestion_id" type="number(38)"/>
+        </createTable>
+        <addPrimaryKey tableName="suggestion_tag" columnNames="fk_tag_id, fk_suggestion_id" constraintName="PK_suggestion_tag"
+                       schemaName="public"/>
+        <addForeignKeyConstraint baseTableName="suggestion_tag" baseColumnNames="fk_suggestion_id" constraintName="FK_suggestion" referencedTableName="suggestion"
+                                 referencedColumnNames="suggestion_id"/>
+        <addForeignKeyConstraint baseTableName="suggestion_tag" baseColumnNames="fk_tag_id" constraintName="FK_tag" referencedTableName="tag"
+                                 referencedColumnNames="tag_id"/>
+    </changeSet>
+
+    <changeSet id="8" author="rionescu">
+        <dropPrimaryKey tableName="vote" constraintName="PK_vote"/>
+        <dropNotNullConstraint tableName="vote" columnName="fk_suggestion_id"/>
+    </changeSet>
+
+    <changeSet id="9" author="rionescu">
+        <addUniqueConstraint tableName="vote" columnNames="fk_user_id, fk_suggestion_id"/>
+    </changeSet>
+
+    <changeSet id="11" author="rionescu">
+        <createTable tableName="reason">
+            <column name="reason_id" type="number(38)"/>
+            <column name="reason" type="varchar(2000)"/>
+            <column name="suggestion_id" type="number(38)"/>
+            <column name="title" type="varchar(200)"/>
+        </createTable>
+        <createSequence sequenceName="seq_reason" minValue="1" maxValue="999999" incrementBy="1" startValue="1"/>
+    </changeSet>
+
+    <changeSet id="13" author="rionescu">
+        <createTable tableName="notification">
+            <column name="notification_id" type="number(38)"/>
+            <column name="user_id" type="number(38)"/>
+            <column name="suggestion_id" type="number(38)"/>
+            <column name="descriere" type="varchar(200)"/>
+            <column name="seen" type="boolean"/>
+        </createTable>
+        <addPrimaryKey tableName="notification" columnNames="notification_id"/>
+        <addForeignKeyConstraint baseTableName="notification" baseColumnNames="user_id"
+                                 constraintName="FK_notification_users"
+                                 referencedTableName="users"
+                                 referencedColumnNames="user_id"/>
+        <addForeignKeyConstraint baseTableName="notification" baseColumnNames="suggestion_id"
+                                 constraintName="FK_notification_suggestion"
+                                 referencedTableName="suggestion"
+                                 referencedColumnNames="suggestion_id"/>
+        <createSequence sequenceName="seq_notification" minValue="1" maxValue="999999" incrementBy="1" startValue="1"/>
+    </changeSet>
+    <changeSet id="14" author="amarian">
+        <addColumn tableName="notification">
+            <column name="post_date" type="TIMESTAMP WITHOUT TIME ZONE"></column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="15" author="amarian">
+        <dropColumn tableName="notification" columnName="descriere"></dropColumn>
+        <addColumn tableName="notification">
+            <column name="description" type="varchar(200)"></column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="16" author="amarian">
+        <dropAllForeignKeyConstraints baseTableName="notification"></dropAllForeignKeyConstraints>
+    </changeSet>
+
+    <changeSet id="14" author="rionescu">
+        <addColumn tableName="reason">
+            <column name="declined" type="boolean"/>
+        </addColumn>
+    </changeSet>
+
+</databaseChangeLog>

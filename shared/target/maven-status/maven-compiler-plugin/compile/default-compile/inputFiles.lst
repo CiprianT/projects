@@ -1,0 +1,11 @@
+C:\Users\lmatei2\Documents\teamalain_api\shared\src\main\java\com\mhp\shared\config\SecurityConfig.java
+C:\Users\lmatei2\Documents\teamalain_api\shared\src\main\java\com\mhp\shared\helper\EUserRole.java
+C:\Users\lmatei2\Documents\teamalain_api\shared\src\main\java\com\mhp\shared\service\UserServiceImpl.java
+C:\Users\lmatei2\Documents\teamalain_api\shared\src\main\java\com\mhp\shared\dto\UserDto.java
+C:\Users\lmatei2\Documents\teamalain_api\shared\src\main\java\com\mhp\shared\mappers\UserMapper.java
+C:\Users\lmatei2\Documents\teamalain_api\shared\src\main\java\com\mhp\shared\model\UserEntity.java
+C:\Users\lmatei2\Documents\teamalain_api\shared\src\main\java\com\mhp\shared\config\JwtTokenFilter.java
+C:\Users\lmatei2\Documents\teamalain_api\shared\src\main\java\com\mhp\shared\service\IUserService.java
+C:\Users\lmatei2\Documents\teamalain_api\shared\src\main\java\com\mhp\shared\repository\UserRepository.java
+C:\Users\lmatei2\Documents\teamalain_api\shared\src\main\java\com\mhp\shared\config\JwtTokenProvider.java
+C:\Users\lmatei2\Documents\teamalain_api\shared\src\main\java\com\mhp\shared\config\CorsFilter.java

@@ -1,0 +1,29 @@
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet author="marius" id="1">
+
+        <insert tableName="tresholds">
+            <column name="treshold_id" value="1"/>
+            <column name="name" value="Pending"/>
+            <column name="description" value="Minimum treshold for pending"/>
+            <column name="value" value="30"/>
+        </insert>
+
+        <insert tableName="tresholds">
+            <column name="treshold_id" value="2"/>
+            <column name="name" value="Delete"/>
+            <column name="description" value="Minimum treshold for deleting "/>
+            <column name="value" value="3"/>
+        </insert>
+
+        <insert tableName="tresholds">
+            <column name="treshold_id" value="3"/>
+            <column name="name" value="Update"/>
+            <column name="description" value="Minimum treshold for update a suggestion"/>
+            <column name="value" value="10"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

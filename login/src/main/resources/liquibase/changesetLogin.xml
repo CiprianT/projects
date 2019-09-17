@@ -1,0 +1,21 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+    <changeSet id="1" author="cteisanu">
+        <createTable tableName="users">
+            <column name="user_id" type="number(38)"/>
+            <column name="username" type="varchar(500)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="first_name" type="varchar(500)"/>
+            <column name="last_name" type="varchar(5000)"/>
+            <column name="email" type="varchar(900)"/>
+            <column name="department" type="varchar(500)"/>
+            <column name="title" type="varchar(500)"/>
+            <column name="photo" type="bytea"/>
+            <column name="role" type="number(10)"/>
+        </createTable>
+        <addPrimaryKey tableName="users" columnNames="user_id"/>
+        <createSequence sequenceName="seq_users" minValue="1" maxValue="999999" incrementBy="1" startValue="1"/>
+    </changeSet>
+</databaseChangeLog>

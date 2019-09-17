@@ -1,0 +1,9 @@
+.dropdown-style {
+    background-color: lightgrey;
+    border: 1px solid lightgreen;
+    font-size: inherit;
+    height: 30px;
+    overflow: hidden;
+    padding: 5px 10px;
+    width: 200px;
+}
